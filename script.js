@@ -23,9 +23,14 @@ let idIntervaloCronometro = null;
 
 function atualizarCronometro() {
   segundosDecorridos++;
-  const minutos = doisDigitos(Math.floor(segundosDecorridos / 60));
+
+  const horas = Math.floor(segundosDecorridos / 3600);
+  const minutos = doisDigitos(Math.floor((segundosDecorridos % 3600) / 60));
   const segundos = doisDigitos(segundosDecorridos % 60);
-  elCronometro.textContent = `${minutos}:${segundos}`;
+
+  // so mostra a hora se passar de 59:59, senao fica poluido
+  elCronometro.textContent =
+    horas > 0 ? `${doisDigitos(horas)}:${minutos}:${segundos}` : `${minutos}:${segundos}`;
 }
 
 const btnPausar = document.getElementById("btn-pausar");
