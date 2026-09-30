@@ -40,11 +40,15 @@ btnIniciar.addEventListener("click", () => {
   // se ja tem um intervalo rodando, nao cria outro por cima
   if (idIntervaloCronometro !== null) return;
   idIntervaloCronometro = setInterval(atualizarCronometro, 1000);
+  btnIniciar.disabled = true;
+  btnPausar.disabled = false;
 });
 
 btnPausar.addEventListener("click", () => {
   clearInterval(idIntervaloCronometro);
   idIntervaloCronometro = null;
+  btnIniciar.disabled = false;
+  btnPausar.disabled = true;
 });
 
 btnZerar.addEventListener("click", () => {
@@ -52,4 +56,8 @@ btnZerar.addEventListener("click", () => {
   idIntervaloCronometro = null;
   segundosDecorridos = 0;
   elCronometro.textContent = "00:00";
+  btnIniciar.disabled = false;
+  btnPausar.disabled = true;
 });
+
+btnPausar.disabled = true;
