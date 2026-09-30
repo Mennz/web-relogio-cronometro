@@ -28,8 +28,23 @@ function atualizarCronometro() {
   elCronometro.textContent = `${minutos}:${segundos}`;
 }
 
+const btnPausar = document.getElementById("btn-pausar");
+const btnZerar = document.getElementById("btn-zerar");
+
 btnIniciar.addEventListener("click", () => {
   // se ja tem um intervalo rodando, nao cria outro por cima
   if (idIntervaloCronometro !== null) return;
   idIntervaloCronometro = setInterval(atualizarCronometro, 1000);
+});
+
+btnPausar.addEventListener("click", () => {
+  clearInterval(idIntervaloCronometro);
+  idIntervaloCronometro = null;
+});
+
+btnZerar.addEventListener("click", () => {
+  clearInterval(idIntervaloCronometro);
+  idIntervaloCronometro = null;
+  segundosDecorridos = 0;
+  elCronometro.textContent = "00:00";
 });
